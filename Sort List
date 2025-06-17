@@ -1,0 +1,70 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+        # temp = head
+        # cont = []
+        # while temp :
+        #     cont.append(temp.val)
+        #     temp = temp.next
+        # cont.sort()
+        # temp = head
+        # i = 0
+        # while temp :
+        #     temp.val = cont[i]
+        #     temp = temp.next
+        #     i+=1
+        # return head
+        def findmiddle(head):
+            if head is None or head.next is None:
+                return head
+            slow = head
+            fast = head.next
+            while fast and fast.next :
+                slow = slow.next
+                fast = fast.next.next
+            return slow
+        def mergesorted(left,right):
+            dummynode = ListNode(-1)
+            temp = dummynode
+
+            while left is not None and right is not None:
+
+                if left.val <= right.val:
+                    temp.next = left
+                    left = left.next
+                else :
+                    temp.next = right
+                    right = right.next
+                
+                temp = temp.next
+            if left is not None:
+                temp.next = left
+            if right is not None:
+                temp.next = right
+            
+            return dummynode.next
+                
+
+        def sortll(head):
+            if head is None or head.next is None:
+                return head
+            middle = findmiddle(head)
+            right = middle.next
+            middle.next = None
+            left = head
+
+            left = sortll(left)
+            right = sortll(right)
+
+            return mergesorted(left,right)
+        
+        return sortll(head)
+
+
+        
+        
