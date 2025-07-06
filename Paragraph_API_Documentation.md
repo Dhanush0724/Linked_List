@@ -1,61 +1,89 @@
-Paragraph Word Search API - Design & Run Documentation
-=======================================================
+# 📘 Paragraph Word Search API
 
-1\. Overview \-\-\-\-\-\-\-\-\-\-- A RESTful API to submit paragraphs,
-tokenize and index words, and search for paragraphs containing a
-specific word.
+A RESTful API to submit paragraphs, tokenize and index words, and search for paragraphs containing specific words. Built using Django REST Framework, PostgreSQL, JWT Authentication, and Docker.
 
-Tech stack: Django REST Framework, PostgreSQL, JWT Authentication,
-Docker.
+---
 
-2\. System Design \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- - Users: Custom user
-model with UUID, name, email, dob, createdAt, modifiedAt. - Paragraphs:
-Stored with unique UUIDs, linked to users. - Word Indexing:  -
-Paragraphs split by two newlines.  - Words are lowercased,
-whitespace-tokenized.  - Indexed into a WordIndex model with (word,
-paragraph) uniqueness. - Search: Returns top 10 paragraphs containing a
-word. - Authentication: All write/search APIs require JWT access
-token. - Docs: Swagger UI (/swagger/) and Postman collection included.
+## 📐 Design Overview
 
-3\. Running the Project (Using Docker)
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
-Prerequisites: Docker & Docker Compose
+### 🧱 Architecture
 
-Step-by-step: 1. Clone the repo: git clone
-https://github.com/your-username/paragraph-api.git cd paragraph-api
+- **Users**: Custom user model with `UUID`, `name`, `email`, `dob`, `created_at`, `modified_at`
+- **Authentication**: JWT-based login and token verification (via SimpleJWT)
+- **Paragraphs**:
+  - Input text is split into paragraphs using **two newline characters**
+  - Each paragraph is saved with a UUID and linked to the user
+- **Word Indexing**:
+  - Tokenize by whitespace
+  - Lowercase all words
+  - Map and store `word → paragraph` in the `WordIndex` table
+- **Search**:
+  - Returns top 10 most recent paragraphs where a word appears
+- **Docs**:
+  - Swagger (`/swagger/`)
+  - ReDoc (`/redoc/`)
+  - Postman collection (`Paragraph_API.postman_collection.json`)
 
-2\. Add environment variables: Create a file named \`.env\` with:
-DB_NAME=paragraphdb DB_USER=postgres DB_PASSWORD=postgres DEBUG=True
+---
+
+## 🐳 How to Run (Docker)
+
+### ⚙️ Prerequisites
+
+- Docker
+- Docker Compose
+
+---
+
+### 📦 Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/your-username/paragraph-api.git
+cd paragraph-api
+
+```
+
+### 📦 Step 2: Create a `.env` File
+
+In the project root, create a file named `.env` and paste the following:
+
+```env
+DB_NAME=paragraphdb
+DB_USER=postgres
+DB_PASSWORD=postgres
+DEBUG=True
 SECRET_KEY=your_secret_key
+```
+### 📦 Step 3: Build & Start Docker Containers
 
-3\. Build and start the containers: docker-compose build docker-compose
-up
+In your terminal, run:
 
-4\. Run migrations and create a superuser: docker-compose exec web
-python manage.py migrate docker-compose exec web python manage.py
-createsuperuser
+```bash
+docker-compose build
+docker-compose up
 
-Visit http://localhost:8000/
+```
+This will:
 
-4\. Key Endpoints \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-- \| Method \| URL \|
-Description \|
-\|\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
-\| POST \| /api/register/ \| Register a new user \| \| POST \|
-/api/login/ \| Login and receive JWT tokens \| \| POST \|
-/api/paragraphs/ \| Submit multiple paragraphs \| \| GET \|
-/api/search/?word=example \| Search top 10 paragraphs \| \| GET \|
-/swagger/ \| Swagger UI \| \| GET \| /redoc/ \| Redoc documentation \|
+🐳 Build the Django app Docker image
 
-5\. Postman \-\-\-\-\-\-\-\-\-- - Import the provided
-Paragraph_API.postman_collection.json into Postman - Run Register →
-Login → Submit Paragraphs → Search
+🐘 Start a PostgreSQL container
 
-6\. Folder Structure \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
-paragraph-api/ ├── core/ ├── backend/ ├── requirements.txt ├──
-Dockerfile ├── docker-compose.yml ├── .env ├── README.md
+🚀 Launch your app at: http://localhost:8000/
 
-7\. Submission \-\-\-\-\-\-\-\-\-\-\-\-- - Push code to GitHub
-(private) - Include Postman collection - Share repo access with
-ravi.bhalani@codemonk.io
 
-Author: Your Name Email: yourname@example.com
+📦 Step 4: Run Migrations & Create Superuser
+Open a new terminal window and run:
+
+```bash
+
+docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py createsuperuser
+```
+Then follow the prompts to enter:
+
+A username
+
+An email address
+
+A secure password
