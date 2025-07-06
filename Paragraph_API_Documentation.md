@@ -1,4 +1,4 @@
-# 📘 Paragraph Word Search API
+# 📘 Design & Setup Guide – Paragraph Word Search API 
 
 A RESTful API to submit paragraphs, tokenize and index words, and search for paragraphs containing specific words. Built using Django REST Framework, PostgreSQL, JWT Authentication, and Docker.
 
@@ -27,6 +27,8 @@ A RESTful API to submit paragraphs, tokenize and index words, and search for par
 ---
 
 ## 🐳 How to Run (Docker)
+Running the Project with Docker
+The entire app is containerized using Docker and docker-compose so you don’t need to install PostgreSQL or manage a virtualenv manually.
 
 ### ⚙️ Prerequisites
 
@@ -80,10 +82,37 @@ Open a new terminal window and run:
 docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py createsuperuser
 ```
-Then follow the prompts to enter:
+## 🚀 API Endpoints
 
-A username
+| Method | Endpoint               | Description                          |
+|--------|------------------------|--------------------------------------|
+| POST   | `/api/register/`       | Register a new user                  |
+| POST   | `/api/login/`          | Login and get JWT tokens             |
+| POST   | `/api/paragraphs/`     | Submit multiple paragraphs           |
+| GET    | `/api/search/?word=x`  | Search top 10 paragraphs for word    |
+| GET    | `/swagger/`            | Swagger API Docs                     |
+| GET    | `/redoc/`              | ReDoc API Docs                       |
 
-An email address
 
-A secure password
+📘 Postman Support
+Import Paragraph_API.postman_collection.json into Postman
+
+Includes:
+  Register
+  Login (JWT)
+  Submit Paragraphs
+  Search Words
+
+
+✅ Final Submission Checklist
+ Dockerized application
+
+ JWT-based authentication
+
+ Full-text indexing and word search
+
+ Swagger + Postman documentation
+
+ .env for config
+
+ README with complete setup instructions
