@@ -54,9 +54,9 @@ docker-compose up
 This will:
 🐳 Build the Django app Docker image
 🐘 Start a PostgreSQL container
-🚀 Launch your app at: http://localhost:8001/
+🚀 Launch your app at: http://localhost:8000/
 
-📦 Step 3: Run Migrations
+### 📦 Step 3: Run Migrations
 Open a new terminal window and run:
 ```bash
 docker-compose exec web python manage.py makemigrations
@@ -70,25 +70,32 @@ docker-compose exec web python manage.py migrate
 | POST   | `/api/login/`          | Login and get JWT tokens             |
 | POST   | `/api/paragraphs/`     | Submit multiple paragraphs           |
 | GET    | `/api/search/?word=x`  | Search top 10 paragraphs for word    |
-| GET    | `/swagger/`            | Swagger API Docs                     |
-| GET    | `/redoc/`              | ReDoc API Docs                       |
 
-
-📘 Postman Support
+## 📘 Postman Support
 
 Import Paragraph_API.postman_collection.json into Postman
-Includes:
+
+# Includes:
+
   Register
+  
   Login (JWT)
+  
   Submit Paragraphs
+  
   Search Words
 
 
-✅ Final Submission Checklist
+### ✅ Final Submission Checklist
 
  Dockerized application
+ 
  JWT-based authentication
+ 
  Full-text indexing and word search
+ 
  Postman documentation
+ 
  .env for config
+ 
  README with complete setup instructions
