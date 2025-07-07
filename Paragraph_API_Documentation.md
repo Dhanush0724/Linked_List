@@ -20,10 +20,7 @@ A RESTful API to submit paragraphs, tokenize and index words, and search for par
 - **Search**:
   - Returns top 10 most recent paragraphs where a word appears
 - **Docs**:
-  - Swagger (`/swagger/`)
-  - ReDoc (`/redoc/`)
   - Postman collection (`Paragraph_API.postman_collection.json`)
-
 ---
 
 ## 🐳 How to Run (Docker)
@@ -40,8 +37,8 @@ The entire app is containerized using Docker and docker-compose so you don’t n
 ### 📦 Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/paragraph-api.git
-cd paragraph-api
+git clone https://github.com/Dhanush0724/CodeMonk_Assignment-.git
+cd CodeMonk_Assignment
 
 ```
 
@@ -63,24 +60,17 @@ In your terminal, run:
 ```bash
 docker-compose build
 docker-compose up
-
 ```
+
 This will:
-
 🐳 Build the Django app Docker image
-
 🐘 Start a PostgreSQL container
-
 🚀 Launch your app at: http://localhost:8000/
 
-
-📦 Step 4: Run Migrations & Create Superuser
+📦 Step 4: Run Migrations
 Open a new terminal window and run:
-
 ```bash
-
 docker-compose exec web python manage.py migrate
-docker-compose exec web python manage.py createsuperuser
 ```
 ## 🚀 API Endpoints
 
@@ -95,8 +85,8 @@ docker-compose exec web python manage.py createsuperuser
 
 
 📘 Postman Support
-Import Paragraph_API.postman_collection.json into Postman
 
+Import Paragraph_API.postman_collection.json into Postman
 Includes:
   Register
   Login (JWT)
@@ -105,14 +95,10 @@ Includes:
 
 
 ✅ Final Submission Checklist
+
  Dockerized application
-
  JWT-based authentication
-
  Full-text indexing and word search
-
- Swagger + Postman documentation
-
+ Postman documentation
  .env for config
-
  README with complete setup instructions
