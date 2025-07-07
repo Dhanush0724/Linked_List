@@ -38,7 +38,7 @@ The entire app is containerized using Docker and docker-compose so you don’t n
 
 ```bash
 git clone https://github.com/Dhanush0724/CodeMonk_Assignment-.git
-cd CodeMonk_Assignment
+cd CodeMonk_Assignment-
 
 ```
 
