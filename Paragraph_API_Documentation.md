@@ -42,18 +42,7 @@ cd CodeMonk_Assignment-
 
 ```
 
-### 📦 Step 2: Create a `.env` File
-
-In the project root, create a file named `.env` and paste the following:
-
-```env
-DB_NAME=paragraphdb
-DB_USER=postgres
-DB_PASSWORD=postgres
-DEBUG=True
-SECRET_KEY=your_secret_key
-```
-### 📦 Step 3: Build & Start Docker Containers
+### 📦 Step 2: Build & Start Docker Containers
 
 In your terminal, run:
 
@@ -65,11 +54,12 @@ docker-compose up
 This will:
 🐳 Build the Django app Docker image
 🐘 Start a PostgreSQL container
-🚀 Launch your app at: http://localhost:8000/
+🚀 Launch your app at: http://localhost:8001/
 
-📦 Step 4: Run Migrations
+📦 Step 3: Run Migrations
 Open a new terminal window and run:
 ```bash
+docker-compose exec web python manage.py makemigrations
 docker-compose exec web python manage.py migrate
 ```
 ## 🚀 API Endpoints
